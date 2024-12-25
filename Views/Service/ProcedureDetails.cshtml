@@ -1,0 +1,150 @@
+﻿@model ProcedureFormViewModel
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Crea una nuova procedura</h2>
+    <form asp-controller="Service" asp-action="UpdateProcedure" method="post" class="needs-validation">
+        <div class="row">
+            <!-- Prima Colonna -->
+            <div class="col-md-4">
+                <div class="card shadow p-4 mb-4">
+                    <h5 class="mb-3">Dati Cliente</h5>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Nome *</label>
+                        <input asp-for="Name" id="Name" type="text" class="form-control" value="@Model.Name" required/>
+                        <div class="invalid-feedback">
+                            Inserisci un nome valido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Surname" class="form-label">Cognome *</label>
+                        <input asp-for="Surname" id="Surname" type="text" class="form-control" value="@Model.Surname" required />
+                        <div class="invalid-feedback">
+                            Inserisci un cognome valido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" id="Email" type="email" class="form-control" value="@Model.Email" />
+                        <div class="invalid-feedback">
+                            Inserisci un'email valida.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Telefono *</label>
+                        <input asp-for="PhoneNumber" id="PhoneNumber" type="tel" class="form-control" value="@Model.PhoneNumber" required />
+                        <div class="invalid-feedback">
+                            Inserisci un numero di telefono valido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seconda Colonna -->
+            <div class="col-md-8">
+                <div class="card shadow p-4 mb-4">
+                    <h5 class="mb-3">Dettagli Procedura e Tecnici</h5>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="Brand" class="form-label">Marca *</label>
+                            <input asp-for="Brand" id="Brand" type="text" class="form-control" value="@Model.Brand" required />
+                            <div class="invalid-feedback">
+                                Inserisci una marca.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="ProductModel" class="form-label">Modello *</label>
+                            <input asp-for="ProductModel" id="ProductModel" type="text" class="form-control" value="@Model.ProductModel" required />
+                            <div class="invalid-feedback">
+                                Inserisci un modello.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="SerialNumber" class="form-label">Numero di Serie</label>
+                            <input asp-for="SerialNumber" id="SerialNumber" type="text" class="form-control" value="@Model.SerialNumber" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ProblemDescription" class="form-label">Descrizione del problema *</label>
+                        <textarea asp-for="ProblemDescription" id="ProblemDescription" class="form-control" value="@Model.ProblemDescription" required></textarea>
+                        <div class="invalid-feedback">
+                            Inserisci una descrizione valida.
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="WorkSummary" class="form-label">Sommario del lavoro</label>
+                            <textarea asp-for="WorkSummary" id="WorkSummary" class="form-control" value="@Model.WorkSummary"></textarea>
+                            <div class="invalid-feedback">
+                                Inserisci un sommario valido.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="Accessories" class="form-label">Accessori</label>
+                            <textarea asp-for="Accessories" id="Accessories" class="form-control" value="@Model.Accessories"></textarea>
+                            <div class="invalid-feedback">
+                                Inserisci gli accessori validi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="TechnicalExamCost" class="form-label">Costo esame tecnico *</label>
+                            <div class="d-flex">
+                                <input asp-for="TechnicalExamCost" id="TechnicalExamCost" type="number" step="0.01" class="form-control" value="@Model.TechnicalExamCost" />
+                                <span class="align-self-end">€</span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserisci un costo valido.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="TotalCost" class="form-label">Costo totale</label>
+                            <input asp-for="TotalCost" id="TotalCost" type="number" step="0.01" class="form-control" value="@Model.TotalCost"/>
+                            <div class="invalid-feedback">
+                                Inserisci un costo valido.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Garanzia-->
+                    <div class="mb-3">
+                        <label class="form-label">Garanzia *</label>
+                        <div class="form-check">
+                            <input asp-for="Warranty" class="radio-input form-check-input" type="radio" id="WarrantyNo" value="@Model.Warranty" checked />
+                            <label class="form-check-label" for="WarrantyNo">No</label>
+                        </div>
+                    </div>
+
+                    <div id="WarrantyDetails" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="PurchaseDate" class="form-label">Data di acquisto</label>
+                                <input asp-for="PurchaseDate" id="PurchaseDate" type="date" class="form-control" value="@Model.PurchaseDate"/>
+                                <div class="invalid-feedback">
+                                    Inserisci una data valida.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <img src="@Model.WarrantyPath" alt="Alternate Text" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pulsante di Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mt-4">Modifica Procedura</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

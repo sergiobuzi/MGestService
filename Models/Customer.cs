@@ -6,10 +6,10 @@ namespace MGestService.Models
     {
         [Key]
         public int CustomerId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string? Email { get; set; } = string.Empty;
 
         // Collezione di procedure associate al cliente
         public List<Procedure> Procedures { get; set; }

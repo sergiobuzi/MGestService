@@ -1,0 +1,54 @@
+﻿@model List<MGestService.Models.ProcedureFormViewModel>
+
+
+<table id="table" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>N.Nota</th>
+            <th>Data Ingresso</th>
+            <th>Cliente</th>
+            <th>Prodotto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProcedureId</td>
+                <td>@item.EntryDate</td>
+                <td>@item.Name @item.Surname</td>
+                <td>@item.Brand @item.ProductModel</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $('#table').DataTable({
+                 order: [[0, 'desc']],
+            });
+    });
+
+
+</script>

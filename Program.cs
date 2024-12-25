@@ -1,4 +1,5 @@
 using MGestService.Data;
+using MGestService.Models.Options;
 using Microsoft.EntityFrameworkCore;
 
 namespace MGestService
@@ -9,9 +10,19 @@ namespace MGestService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Aggiungi il DbContext e configura la stringa di connessione
+            // Configura l'opzione ConnectionStringsOptions
+            builder.Services.Configure<DatabaseOptions>(
+                builder.Configuration.GetSection("DatabaseOptions"));
+
+            // Legge le opzioni per ottenere la stringa di connessione
+            var connectionString = builder.Configuration
+                .GetSection("DatabaseOptions")
+                .Get<DatabaseOptions>()?.ConnectionString;
+
             builder.Services.AddDbContext<ServiceContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
+
+            builder.Services.AddTransient<ServiceManager>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -35,7 +46,7 @@ namespace MGestService
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Service}/{action=Index}/{id?}");
 
             app.Run();
         }

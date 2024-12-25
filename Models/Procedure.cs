@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using System.Security.Claims;
 
@@ -8,16 +9,18 @@ namespace MGestService.Models
     {
         [Key]
         public int ProcedureId { get; set; }
-        public DateTime EntryDate { get; set; }
-        public string ProblemDescription { get; set; }
-        public DateOnly PurchaseDate { get; set; }
-        public string WorkSummary { get; set; }
-        public float TotalCost { get; set; }
+        public DateTime? EntryDate { get; set; }
+        public string ProblemDescription { get; set; } = string.Empty;
+        public DateOnly? PurchaseDate { get; set; }
+        public string? WorkSummary { get; set; } = string.Empty;
+        public float? TotalCost { get; set; }
         public float TechnicalExamCost { get; set; }
-        public string Accessories { get; set; }
-        public string Warranty {  get; set; }
-        public string WarrantyNumber { get; set; }
-        public string WarrantyPath { get; set; }
+        public string? Accessories { get; set; } = string.Empty;
+        public string Warranty {  get; set; } = string.Empty;
+        public string? WarrantyNumber { get; set; } = string.Empty;
+        public string? WarrantyPath { get; set; } = string.Empty;
+        [NotMapped]
+        public IFormFile WarrantyFile { get; set; }
 
         //CustomerId
         // Foreign key (chiave esterna) che collega il prodotto al cliente

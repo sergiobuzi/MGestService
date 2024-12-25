@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MGestService.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    [Migration("20241114142525_Service1")]
-    partial class Service1
+    [Migration("20241214165307_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,11 +152,12 @@ namespace MGestService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Model")
+                    b.Property<string>("ProductModel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SerialNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
